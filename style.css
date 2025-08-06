@@ -1,0 +1,189 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+:root {
+  --bg: #101014;
+  --sidebar-bg: #1b1b23;
+  --content-bg: #141417;
+  --accent: #9b59b6;
+  --text: #e0e0e0;
+  --muted: #a0a0a5;
+  --hover-bg: #25252d;
+}
+
+/* Base reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 280px; /* Increased width */
+  background: var(--sidebar-bg);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: fixed;
+  top: 0;
+  bottom: 50px;
+  border-right: 1px solid #2e2e3a;
+}
+
+/* Sidebar buttons with animation and underline */
+.sidebar button {
+  background: #22222b;
+  color: var(--text);
+  border: 1px solid transparent;
+  text-align: left;
+  font-size: 17px; /* Increased font size */
+  font-weight: 600; /* Bolder text */
+  padding: 16px 20px; /* Increased padding */
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  width: 100%;
+}
+
+.sidebar button:hover {
+  background: var(--hover-bg);
+  color: var(--accent);
+  border-left: 4px solid var(--accent);
+  padding-left: 16px;
+  transform: translateX(4px);
+}
+
+.sidebar button::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.3s;
+}
+
+.sidebar button:hover::after {
+  width: 100%;
+}
+
+/* Highlight active button */
+.sidebar button.active {
+  background-color: var(--hover-bg);
+  color: var(--accent);
+  border-left: 4px solid var(--accent);
+  font-weight: 700;
+}
+
+/* Content */
+.content {
+  margin-left: 280px; /* Updated to match new sidebar width */
+  padding: 40px 30px 100px;
+  flex: 1;
+  overflow-y: auto;
+  background: var(--content-bg);
+}
+
+h1 {
+  color: var(--accent);
+  font-size: 28px;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+p, ul {
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+ul li {
+  margin-bottom: 8px;
+}
+
+/* Sections */
+.section {
+  display: none;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideFade 0.5s ease forwards;
+}
+
+.section.active {
+  display: block;
+}
+
+/* Job / Card Styling */
+.job, .skill-card {
+  background: var(--sidebar-bg);
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.job:hover, .skill-card:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+  transform: translateY(-4px);
+}
+
+.job h2, .skill-card h3 {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.job-details {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 15px;
+  display: none;
+}
+
+.job.expanded .job-details {
+  display: block;
+}
+
+/* Footer */
+.footer {
+  height: 50px;
+  background: var(--sidebar-bg);
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-top: 1px solid #2e2e3a;
+  font-size: 14px;
+}
+
+/* Animations */
+@keyframes slideFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
